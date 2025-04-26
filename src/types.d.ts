@@ -65,7 +65,7 @@ type CircleCol = {
 };
 
 type Physics = {
-  gravity: 1,
+  gravity: number,
   velocity: Vec,
   maxVelocity: Vec
 };
