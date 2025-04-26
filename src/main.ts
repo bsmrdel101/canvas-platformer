@@ -1,6 +1,8 @@
 import { dumpEntityList } from "./entities/entities";
 import { handleInputs, inputSetup } from "./input";
-import { currentScene } from "./scenes/scenes";
+import { currentScene, setupScenes } from "./scenes/scenes";
+import { collisions } from "./systems/collisions";
+import { physics } from "./systems/physics";
 import { renderer } from "./systems/renderer";
 
 let bgCanvas: HTMLCanvasElement;
@@ -10,7 +12,7 @@ export let pxCtx: Ctx;
 
 const BACKGROUND_COLOR = '#499DBC';
 const CANVAS_SIZE = 0.9;
-export let screenSize = { x: 0, y: 0 };
+export let screenSize: Vec = { x: 0, y: 0 };
 
 
 export const setup = () => {
@@ -25,6 +27,7 @@ export const setup = () => {
   bgCtx = bgCanvas.getContext('2d')!;
   pxCtx = pxCanvas.getContext('2d')!;
 
+  setupScenes();
   inputSetup();
   
   requestAnimationFrame(drawFrame);
@@ -34,7 +37,9 @@ const drawFrame = () => {
   changeBackground(BACKGROUND_COLOR);
   pxCtx.clearRect(0, 0, pxCanvas.width, pxCanvas.height);
   handleInputs();
-  if (currentScene.frame) currentScene.frame();
+  if (currentScene?.frame) currentScene.frame();
+  physics();
+  collisions();
   renderer();
   dumpEntityList();
   requestAnimationFrame(drawFrame);

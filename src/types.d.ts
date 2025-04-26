@@ -11,6 +11,9 @@ type GameObject = {
   transform: Transform
   shapeRenderer?: ShapeRenderer
   spriteRenderer?: SpriteRenderer
+  boxCol?: BoxCol
+  circleCol?: CircleCol
+  physics?: Physics
 };
 
 type Scene = {
@@ -44,4 +47,25 @@ type ShapeRenderer = {
 type SpriteRenderer = {
   layer: 'px' | 'sm' | 'bg',
   sprite: string
+};
+
+type BoxCol = {
+  x: number
+  y: number
+  width: number
+  height: number
+  isTrigger: boolean
+};
+
+type CircleCol = {
+  x: number
+  y: number
+  radius: number
+  isTrigger: boolean
+};
+
+type Physics = {
+  gravity: 1,
+  velocity: Vec,
+  maxVelocity: Vec
 };

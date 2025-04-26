@@ -1,8 +1,8 @@
 import { Input } from "../input";
 
 
-export const Player = (): Player => {
-  const components: Player = {
+export const Player = (): GameObject => {
+  const components: GameObject = {
     name: 'Player',
     tag: 'player',
     transform: {
@@ -15,6 +15,18 @@ export const Player = (): Player => {
       type: 'Rect',
       brush: 'fill',
       color: 'black'
+    },
+    boxCol: {
+      x: 200,
+      y: 200,
+      width: 20,
+      height: 50,
+      isTrigger: false
+    },
+    physics: {
+      gravity: 1,
+      velocity: { x: 0, y: 0 },
+      maxVelocity: { x: 10, y: 10 }
     }
   };
 
