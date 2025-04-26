@@ -9,7 +9,8 @@ export let bgCtx: Ctx;
 export let pxCtx: Ctx;
 
 const BACKGROUND_COLOR = '#499DBC';
-const CANVAS_SIZE = 1;
+const CANVAS_SIZE = 0.9;
+export let screenSize = { x: 0, y: 0 };
 
 
 export const setup = () => {
@@ -20,6 +21,7 @@ export const setup = () => {
   bgCanvas.height = 1080 * (CANVAS_SIZE / 2);
   pxCanvas.width = 1920 * (CANVAS_SIZE / 2);
   pxCanvas.height = 1080 * (CANVAS_SIZE / 2);
+  screenSize = { x: bgCanvas.width, y: bgCanvas.height };
   bgCtx = bgCanvas.getContext('2d')!;
   pxCtx = pxCanvas.getContext('2d')!;
 

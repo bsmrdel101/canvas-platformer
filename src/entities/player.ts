@@ -1,5 +1,8 @@
+import { Input } from "../input";
+
+
 export const Player = (): Player => {
-  return {
+  const components: Player = {
     name: 'Player',
     tag: 'player',
     transform: {
@@ -14,4 +17,17 @@ export const Player = (): Player => {
       color: 'black'
     }
   };
+
+  const moveSpeed = 2;
+    
+  Input.onKeyPressed((key) => {
+    if (key === 'a' || key === 'd') handleMovement(key);
+  });
+
+  const handleMovement = (key: 'a' | 'd') => {
+    components.transform.pos.x += key === 'a' ? -moveSpeed : moveSpeed;
+  };
+
+
+  return components;
 }
